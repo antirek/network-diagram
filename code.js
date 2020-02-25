@@ -28,6 +28,12 @@ $(function(){ // on dom ready
       })
     }
 
+    const addElements = function ({groups, edges, nodes}) {
+      addGroups(groups);
+      addNodes(nodes);
+      addEdges(edges);
+    }
+
     const render = function(element) {
       Array.prototype.push.apply(nodes, groups);
 
@@ -51,21 +57,13 @@ $(function(){ // on dom ready
               'background-fit': 'cover',
               'border-color': '#000',
               'border-width': 0,
-              'content': 'data(id)',
+              'content': 'data(label)',
               'text-valign': 'top',
               'text-halign': 'center',
-            })
-          .selector('.eating')
-            .css({
-              'border-color': 'red'
-            })
-          .selector('.eater')
-            .css({
-              'border-width': 9
-            })
+            })          
           .selector('edge')
             .css({
-              'width': 6,
+              'width': 2,
               'target-arrow-shape': 'triangle',
               'line-color': '#ffaaaa',
               'target-arrow-color': '#ffaaaa',
@@ -77,44 +75,17 @@ $(function(){ // on dom ready
             .css({
               'background-image': 'https://farm8.staticflickr.com/7272/7633179468_3e19e45a0c_b.jpg'
             })
-          .selector('#cat')
+          .selector('.cat')
             .css({
               'background-image': 'https://farm2.staticflickr.com/1261/1413379559_412a540d29_b.jpg'
-            })
-          .selector('#ladybug')
-            .css({
-              'background-image': 'https://farm4.staticflickr.com/3063/2751740612_af11fb090b_b.jpg'
-            })
-        .selector('#aphid')
-            .css({
-              'background-image': 'https://farm9.staticflickr.com/8316/8003798443_32d01257c8_b.jpg'
-            })
-        .selector('#rose')
-            .css({
-              'background-image': 'https://farm6.staticflickr.com/5109/5817854163_eaccd688f5_b.jpg'
-            })
-        .selector('#grasshopper')
-            .css({
-              'background-image': 'https://farm7.staticflickr.com/6098/6224655456_f4c3c98589_b.jpg'
-            })
-        .selector('#plant')
-            .css({
-              'background-image': 'https://farm1.staticflickr.com/231/524893064_f49a4d1d10_z.jpg'
-            })
-        .selector('#wheat')
-            .css({
-              'background-image': 'https://farm3.staticflickr.com/2660/3715569167_7e978e8319_b.jpg'
-            }),
-        
+            }),        
         elements,
-        
         layout: {
           name: 'breadthfirst',
           directed: true,
           padding: 20,
-          // roots: ['cat'],
-        }
-      }); // cy init
+        },
+      });
     }
 
     return {
@@ -122,42 +93,27 @@ $(function(){ // on dom ready
       addEdges,
       addNodes,
       addGroups,
+      addElements,
     };
   };
 
   const e = [
-    { source: 'cat', target: 'birds', label: 'hunger' },
-
-    /* { data: { source: 'bird', target: 'ladybug' } },
-    { data: { source: 'bird', target: 'grasshopper' } },
-    { data: { source: 'grasshopper', target: 'plant' } },
-    { data: { source: 'grasshopper', target: 'wheat' } },
-    { data: { source: 'ladybug', target: 'aphid' } },
-    { data: { source: 'aphid', target: 'rose' } },
-    { data: { source: 'rose', target: 'cat' } },
-    { data: { source: 'grasshopper', target: 'cat' } }, */
+    { source: 'cat1', target: 'birds amazing', label: 'hunger' },
   ];
 
   const g = [
-    { id: 'birds', label: 'Birds'},
+    { id: 'birds amazing', label: 'Птички'},
   ];
+  
   const n = [
-    { id: 'cat', label: 'Cat Meow'},
-    { id: 'bird1', type: 'bird', group: 'birds'},
-    { id: 'bird2', type: 'bird', group: 'birds'},
-    { id: 'bird3', type: 'bird', group: 'birds'},
-    
-    /* { data: { id: 'ladybug', parent: 'b' } },
-    { data: { id: 'aphid' } },
-    { data: { id: 'rose' } },
-    { data: { id: 'c' } },
-    { data: { id: 'grasshopper', parent: 'c' } },
-    { data: { id: 'plant' } },
-    { data: { id: 'wheat', parent: 'c' } } */
-  ]
+    { id: 'cat1', type: 'cat', label: 'Cat Meow'},
+    { id: 'bird1', type: 'bird', group: 'birds amazing', label: 'Птичка 1'},
+    { id: 'bird2', type: 'bird', group: 'birds amazing', label: 'Птичка 2'},
+    { id: 'bird3', type: 'bird', group: 'birds amazing', label: 'Птичка 3'},    
+  ];
 
   const n2 = [
-    { id: 'cat', label: 'Cat Meow'},
+    { id: 'cat1', type: 'cat', label: 'Cat Meow'},
     { id: 'bird1', type: 'bird', group: 'birds'},
     { id: 'bird2', type: 'bird', group: 'birds'},
     { id: 'bird3', type: 'bird', group: 'birds'},
@@ -172,9 +128,7 @@ $(function(){ // on dom ready
   r.render('cy');
 
   const r2 = createCY();
-  r2.addEdges(e);
-  r2.addNodes(n2);
-  r2.addGroups(g);
+  r2.addElements({nodes: n2, edges: e, groups: g});
   r2.render('cy2');
   
 }); // on dom ready
