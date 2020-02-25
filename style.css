@@ -3,11 +3,15 @@ body {
 }
 
 #cy {
-  height: 90%;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 30;
+  height: 300px;
+  width: 500px;
+  border: #c88 1px solid;
+}
+
+
+#cy2 {
+  height: 300px;
+  width: 500px;
   border: #c88 1px solid;
 }
 

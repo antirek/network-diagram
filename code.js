@@ -1,9 +1,16 @@
 $(function(){ // on dom ready
 
   // photos from flickr with creative commons license
-  const createCY = function() { 
+  const createCY = function() {
     let edges;
     let nodes;
+    let groups;
+
+    const addGroups = function(groupsIn) {
+      groups = groupsIn.map(item => {
+        return {data: item};
+      })
+    }
 
     const addEdges = function(edgesIn) {
       edges = edgesIn.map(item => {
@@ -13,13 +20,25 @@ $(function(){ // on dom ready
 
     const addNodes = function(nodesIn) {
       nodes = nodesIn.map(item=> {
-        return {data: item, classes: [item.type]};
+        return {data: {
+          id: item.id, 
+          label: item.label,
+          parent: item.group,
+        }, classes: [item.type]};
       })
     }
 
-    const render = function() {
+    const render = function(element) {
+      Array.prototype.push.apply(nodes, groups);
+
+      const elements = {
+        nodes,
+        edges,
+      };
+
+      // console.log('el', elements);
       var cy = cytoscape({
-        container: document.getElementById('cy'),
+        container: document.getElementById(element),
         
         boxSelectionEnabled: false,
         autounselectify: false,
@@ -87,16 +106,13 @@ $(function(){ // on dom ready
               'background-image': 'https://farm3.staticflickr.com/2660/3715569167_7e978e8319_b.jpg'
             }),
         
-        elements: {
-          nodes,
-          edges,
-        },
+        elements,
         
         layout: {
           name: 'breadthfirst',
-          directed: false,
+          directed: true,
           padding: 20,
-          roots: ['cat'],
+          // roots: ['cat'],
         }
       }); // cy init
     }
@@ -105,12 +121,13 @@ $(function(){ // on dom ready
       render,
       addEdges,
       addNodes,
+      addGroups,
     };
   };
 
   const e = [
-    { source: 'cat', target: 'bird', label: 'cat-bird' },
-    
+    { source: 'cat', target: 'birds', label: 'hunger' },
+
     /* { data: { source: 'bird', target: 'ladybug' } },
     { data: { source: 'bird', target: 'grasshopper' } },
     { data: { source: 'grasshopper', target: 'plant' } },
@@ -121,9 +138,14 @@ $(function(){ // on dom ready
     { data: { source: 'grasshopper', target: 'cat' } }, */
   ];
 
+  const g = [
+    { id: 'birds', label: 'Birds'},
+  ];
   const n = [
-    { id: 'cat' },
-    { id: 'bird', parent: 'b', type: 'bird'},
+    { id: 'cat', label: 'Cat Meow'},
+    { id: 'bird1', type: 'bird', group: 'birds'},
+    { id: 'bird2', type: 'bird', group: 'birds'},
+    { id: 'bird3', type: 'bird', group: 'birds'},
     
     /* { data: { id: 'ladybug', parent: 'b' } },
     { data: { id: 'aphid' } },
@@ -134,9 +156,25 @@ $(function(){ // on dom ready
     { data: { id: 'wheat', parent: 'c' } } */
   ]
 
+  const n2 = [
+    { id: 'cat', label: 'Cat Meow'},
+    { id: 'bird1', type: 'bird', group: 'birds'},
+    { id: 'bird2', type: 'bird', group: 'birds'},
+    { id: 'bird3', type: 'bird', group: 'birds'},
+    { id: 'bird4', type: 'bird', group: 'birds'},
+    { id: 'bird5', type: 'bird', group: 'birds'},
+  ];
+
   const r = createCY();
   r.addEdges(e);
   r.addNodes(n);
-  r.render();
+  r.addGroups(g);
+  r.render('cy');
 
+  const r2 = createCY();
+  r2.addEdges(e);
+  r2.addNodes(n2);
+  r2.addGroups(g);
+  r2.render('cy2');
+  
 }); // on dom ready
