@@ -12,6 +12,7 @@
 <body>
 <div id="cy"></div>
 <script>
+    /*
   const e = [
     { source: 'server', target: 'db cluster', label: 'grpc' },
     { source: 'client', target: 'server', label: 'request' },
@@ -34,53 +35,54 @@
   r.nodes(n);
   r.groups(g);
   r.render('cy');
+*/
 
-
-/*
-  const n2 = [
-    { id: 'cat1', type: 'cat', label: 'Cat Meow'},
-    { id: 'bird1', type: 'bird', group: 'birds amazing', label: 'app1'},
-    { id: 'bird2', type: 'bird', group: 'birds amazing', label: 'app2'},
-    { id: 'bird3', type: 'bird', group: 'birds amazing', label: 'app3'},
-    { id: 'bird4', type: 'bird', group: 'birds amazing', label: 'app4'},
-    { id: 'bird5', type: 'bird', group: 'birds amazing', label: 'app5'},
-  ];
-
-  const e2 = [
-    { target: 'cat1', source: 'birds amazing', label: 'hunger' },
-  ];
-
-  const g2 = [
-    { id: 'birds amazing', label: 'Птички'},
-  ];
-
-  const r2 = Diagram();
-  r2.elements({nodes: n2, edges: e2, groups: g2});
-  r2.render('cy2');
-
-
-  const elements = {
-    groups: [
-      { id: 'birds amazing', label: 'Птички'},
-    ],
-    nodes: [
-      { id: 'cat1', type: 'cat', label: 'Cat Meow'},
-      { id: 'bird1', type: 'bird', group: 'birds amazing', label: 'app1'},
-      { id: 'bird2', type: 'bird', group: 'birds amazing', label: 'app2'},
-      { id: 'bird3', type: 'bird', group: 'birds amazing', label: 'app3'},
-      { id: 'bird4', type: 'bird', group: 'birds amazing', label: 'app4'},
-      { id: 'bird5', type: 'bird', group: 'birds amazing', label: 'app5'},
-    ],
-    edges: [
-      { target: 'cat1', source: 'birds amazing', label: 'hunger' },
-    ],
-  };
-
-  Diagram('cy3', elements);
-  */
 </script>
 
 <div id="cy2"></div>
+
+
+<script>
+  
+  const elements = {
+    groups: [
+      { id: 'service-group1', label: 'Группа сервисов 1'},
+      { id: 'service-group2', label: 'Группа сервисов 2'},
+    ],
+    nodes: [
+      { id: 'client', type: 'client', label: 'Клиент'},
+      
+      { id: 'agent-backend', type: 'server', group: 'service-group1', label: 'agent-backend'},
+      { id: 'web', type: 'server', group: 'service-group1', label: 'Приложение Записи мобильных'},
+      { id: 'www', type: 'server', group: 'service-group1', label: 'страница загрузки'},
+      { id: 'mongodb1', type: 'database', group: 'service-group1', label: 'Mongo DB 1'},
+      { id: 'mongodb2', type: 'database', group: 'service-group1', label: 'Mongo DB 2'},
+      { id: 'runner-integration1', type: 'server', group: 'service-group1', label: 'отправка'},
+      { id: 'runner-integration2', type: 'server', group: 'service-group1', label: 'отправка'},
+      { id: 'api', type: 'server', group: 'service-group1', label: 'API для внутренних сервисов'},
+
+      { id: 'integration', type: 'server', group:'service-group2', label: 'Интеграция CRM'},
+      { id: 'otherServer', type: 'server', group:'service-group2', label: 'сервер'},
+      { id: 'firebase', type: 'server', label: 'Google Firebase'},
+      { id: 'logger', type: 'server', group:'service-group2', label: 'Сервер логов'},
+    ],
+    edges: [
+      { source: 'client', target: 'agent-backend', label: 'json данные' },
+      { source: 'agent-backend', target: 'mongodb1' },
+      { source: 'mongodb1', target: 'runner-integration1', label: 'данные' },
+      { source: 'mongodb2', target: 'runner-integration2', label: 'данные' },
+      { source: 'mongodb1', target: 'web', label: 'данные для отображения' },
+      { source: 'runner-integration1', target: 'integration', label: 'данные' },
+      { source: 'runner-integration2', target: 'otherServer', label: 'данныедля отчетов' },
+      { source: 'api', target: 'firebase', label: 'данные для отчетов' },
+      { source: 'firebase', target: 'client', label: 'данные в push-сообщениях' },
+      { source: 'service-group1', target: 'logger', label: 'логи syslog' },
+      // { source: 'integration', target: 'api', label: 'уведомления' },
+    ],
+  };
+
+  Diagram('cy2', elements);
+</script>
 
 <div id="cy3"></div>
 
