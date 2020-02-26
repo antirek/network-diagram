@@ -8,8 +8,13 @@ body {
   border: #c88 1px solid;
 }
 
-
 #cy2 {
+  height: 300px;
+  width: 500px;
+  border: #c88 1px solid;
+}
+
+#cy3 {
   height: 300px;
   width: 500px;
   border: #c88 1px solid;
