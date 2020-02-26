@@ -48,8 +48,8 @@ const Diagram = function(id, elements) {
       
       var cy = cytoscape({
         container: document.getElementById(element),      
-        boxSelectionEnabled: false,
-        autounselectify: false,
+        boxSelectionEnabled: true,
+        autounselectify: true,
         style: cytoscape.stylesheet()
           .selector('node')
             .css({
@@ -95,9 +95,9 @@ const Diagram = function(id, elements) {
             }),        
         elements,
         layout: {
-          name: 'breadthfirst',
-          directed: true,
-          padding: 20,
+          name: 'fcose',
+//          directed: true,
+//          padding: 20,
         },
       });
 
