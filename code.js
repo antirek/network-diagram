@@ -37,67 +37,79 @@ const Diagram = function(id, elements) {
   }
 
   const render = function(element) {
-    Array.prototype.push.apply(nodes, groups);
 
-    const elements = {
-      nodes,
-      edges,
+    const renderDiagram = function () {
+      Array.prototype.push.apply(nodes, groups);
+
+      const elements = {
+        nodes,
+        edges,
+      };
+      
+      var cy = cytoscape({
+        container: document.getElementById(element),      
+        boxSelectionEnabled: false,
+        autounselectify: false,
+        style: cytoscape.stylesheet()
+          .selector('node')
+            .css({
+              'height': 50,
+              'width': 50,
+              'background-fit': 'cover',
+              'border-color': '#000',
+              'border-width': 0,
+              'content': 'data(label)',
+              'text-valign': 'top',
+              'text-halign': 'center',
+            })          
+          .selector('edge')
+            .css({
+              'width': 2,
+              'target-arrow-shape': 'triangle',
+              'line-color': '#ffaaaa',
+              'target-arrow-color': '#ffaaaa',
+              'curve-style': 'bezier',
+              'label': 'data(label)',
+              'text-background': '#FFF',
+            })
+          .selector('.server')
+            .css({
+              'background-image': serverIcon,
+              'background-opacity': 0, // do not show the bg colour
+              'border-width': 0, // no border that would increase node size
+              'background-clip': 'none' // 
+            })
+          .selector('.client')
+            .css({
+              'background-image': clientIcon,
+              'background-opacity': 0, // do not show the bg colour
+              'border-width': 0, // no border that would increase node size
+              'background-clip': 'none' // 
+            })
+          .selector('.database')
+            .css({
+              'background-image': databaseIcon,
+              'background-opacity': 0, // do not show the bg colour
+              'border-width': 0, // no border that would increase node size
+              'background-clip': 'none' // 
+            }),        
+        elements,
+        layout: {
+          name: 'breadthfirst',
+          directed: true,
+          padding: 20,
+        },
+      });
+
     };
-    
-    var cy = cytoscape({
-      container: document.getElementById(element),      
-      boxSelectionEnabled: false,
-      autounselectify: false,
-      style: cytoscape.stylesheet()
-        .selector('node')
-          .css({
-            'height': 50,
-            'width': 50,
-            'background-fit': 'cover',
-            'border-color': '#000',
-            'border-width': 0,
-            'content': 'data(label)',
-            'text-valign': 'top',
-            'text-halign': 'center',
-          })          
-        .selector('edge')
-          .css({
-            'width': 2,
-            'target-arrow-shape': 'triangle',
-            'line-color': '#ffaaaa',
-            'target-arrow-color': '#ffaaaa',
-            'curve-style': 'bezier',
-            'label': 'data(label)',
-            'text-background': '#FFF',
-          })
-        .selector('.server')
-          .css({
-            'background-image': serverIcon,
-            'background-opacity': 0, // do not show the bg colour
-            'border-width': 0, // no border that would increase node size
-            'background-clip': 'none' // 
-          })
-        .selector('.client')
-          .css({
-            'background-image': clientIcon,
-            'background-opacity': 0, // do not show the bg colour
-            'border-width': 0, // no border that would increase node size
-            'background-clip': 'none' // 
-          })
-        .selector('.database')
-          .css({
-            'background-image': databaseIcon,
-            'background-opacity': 0, // do not show the bg colour
-            'border-width': 0, // no border that would increase node size
-            'background-clip': 'none' // 
-          }),        
-      elements,
-      layout: {
-        name: 'breadthfirst',
-        directed: true,
-        padding: 20,
-      },
-    });
+
+    if (document.readyState == "complete") {
+      renderDiagram();
+    } else {
+      document.addEventListener("DOMContentLoaded", function(event) {         
+        renderDiagram();
+      });
+    }
   }
 
   if (id && elements) {
@@ -114,73 +126,3 @@ const Diagram = function(id, elements) {
     elements: addElements,
   };
 };
-
-
-
-$(function(){ // on dom ready
-
-  const e = [
-    { source: 'server', target: 'db cluster', label: 'grpc' },
-    { source: 'client', target: 'server', label: 'request' },
-  ];
-
-  const g = [
-    { id: 'db cluster', label: 'Main Database cluster'},
-  ];
-
-  const n = [
-    { id: 'client', type: 'client', label: 'Our dear customer'},
-    { id: 'server', type: 'server', label: 'Main Server'},
-    { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
-    { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
-    { id: 'db3', type: 'database', group: 'db cluster', label: 'DB N'},
-  ];
-
-  const r = Diagram();
-  r.edges(e);
-  r.nodes(n);
-  r.groups(g);
-  r.render('cy');
-/*
-  const n2 = [
-    { id: 'cat1', type: 'cat', label: 'Cat Meow'},
-    { id: 'bird1', type: 'bird', group: 'birds amazing', label: 'app1'},
-    { id: 'bird2', type: 'bird', group: 'birds amazing', label: 'app2'},
-    { id: 'bird3', type: 'bird', group: 'birds amazing', label: 'app3'},
-    { id: 'bird4', type: 'bird', group: 'birds amazing', label: 'app4'},
-    { id: 'bird5', type: 'bird', group: 'birds amazing', label: 'app5'},
-  ];
-
-  const e2 = [
-    { target: 'cat1', source: 'birds amazing', label: 'hunger' },
-  ];
-
-  const g2 = [
-    { id: 'birds amazing', label: 'Птички'},
-  ];
-
-  const r2 = Diagram();
-  r2.elements({nodes: n2, edges: e2, groups: g2});
-  r2.render('cy2');
-
-
-  const elements = {
-    groups: [
-      { id: 'birds amazing', label: 'Птички'},
-    ],
-    nodes: [
-      { id: 'cat1', type: 'cat', label: 'Cat Meow'},
-      { id: 'bird1', type: 'bird', group: 'birds amazing', label: 'app1'},
-      { id: 'bird2', type: 'bird', group: 'birds amazing', label: 'app2'},
-      { id: 'bird3', type: 'bird', group: 'birds amazing', label: 'app3'},
-      { id: 'bird4', type: 'bird', group: 'birds amazing', label: 'app4'},
-      { id: 'bird5', type: 'bird', group: 'birds amazing', label: 'app5'},
-    ],
-    edges: [
-      { target: 'cat1', source: 'birds amazing', label: 'hunger' },
-    ],
-  };
-
-  Diagram('cy3', elements);
-  */
-});
