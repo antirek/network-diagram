@@ -7,10 +7,30 @@ const Diagram = function(id, elements) {
   let edges;
   let nodes;
   let groups;
+  let positions;
 
   const addGroups = function(groupsIn) {
     groups = groupsIn.map(item => {
       return {data: item};
+    })
+  }
+
+  const addPositions = function(positionsIn) {
+    positions = positionsIn;
+  }
+
+  const findPositionForNodeById = function(id) {
+    if (!positions) return;
+    return positions.find(position=> position.id === id);
+  }
+
+  const appendPositionsToNodes = function() {
+    return nodes.map(node => {
+      const position = findPositionForNodeById(node.data.id);      
+      if (position) {
+        node.position = {row: position.row, col:position.col,};
+      }
+      return node;
     })
   }
 
@@ -39,13 +59,14 @@ const Diagram = function(id, elements) {
   const render = function(element) {
 
     const renderDiagram = function () {
+      nodes = appendPositionsToNodes();
       Array.prototype.push.apply(nodes, groups);
 
       const elements = {
         nodes,
         edges,
       };
-      
+      console.log('elements', elements);
       var cy = cytoscape({
         container: document.getElementById(element),      
         boxSelectionEnabled: true,
@@ -53,8 +74,8 @@ const Diagram = function(id, elements) {
         style: cytoscape.stylesheet()
           .selector('node')
             .css({
-              'height': 50,
-              'width': 50,
+              'height': 30,
+              'width': 30,
               'background-fit': 'cover',
               'border-color': '#000',
               'border-width': 0,
@@ -95,9 +116,15 @@ const Diagram = function(id, elements) {
             }),        
         elements,
         layout: {
-          name: 'fcose',
-//          directed: true,
-//          padding: 20,
+          name: 'grid',
+          rows: 5,
+          cols: 5,
+          position: function(node) {
+            return {
+             row: node.position('row'),
+             col: node.position('col'),
+            };
+          }
         },
       });
 
@@ -123,6 +150,7 @@ const Diagram = function(id, elements) {
     edges: addEdges,
     nodes: addNodes,
     groups: addGroups,
+    positions: addPositions,
     elements: addElements,
   };
 };
