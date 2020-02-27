@@ -27,6 +27,14 @@ const images = [
     name: 'cloud',
     file: 'images/black/cloud.png',
   },
+  {
+    name: 'notebook',
+    file: 'images/black/notebook.png',
+  },
+  {
+    name: 'desktop',
+    file: 'images/black/desktop.png',
+  },
 ];
 
 const cv = async function(image) {
