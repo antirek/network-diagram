@@ -24,8 +24,8 @@ const Diagram = function(id, elements) {
     return positions.find(position=> position.id === id);
   }
 
-  const appendPositionsToNodes = function() {
-    if (!positions) return;
+  const appendPositionsToNodes = function(nodes) {
+    if (!positions) return nodes;
     return nodes.map(node => {
       const position = findPositionForNodeById(node.data.id);      
       if (position) {
@@ -63,7 +63,7 @@ const Diagram = function(id, elements) {
     const renderDiagram = function () {
       
       Array.prototype.push.apply(nodes, groups);
-      nodes = appendPositionsToNodes();
+      nodes = appendPositionsToNodes(nodes);
       
       const elements = {
         nodes,

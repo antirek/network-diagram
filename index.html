@@ -61,7 +61,7 @@
 
 
 <script>
-  /*
+  
   const elements = {
     groups: [
       { id: 'service-group1', label: 'Группа сервисов 1'},
@@ -87,20 +87,36 @@
     edges: [
       { source: 'client', target: 'agent-backend', label: 'json данные' },
       { source: 'agent-backend', target: 'mongodb1' },
+      { source: 'agent-backend', target: 'mongodb2' },
       { source: 'mongodb1', target: 'runner-integration1', label: 'данные' },
       { source: 'mongodb2', target: 'runner-integration2', label: 'данные' },
       { source: 'mongodb1', target: 'web', label: 'данные для отображения' },
       { source: 'runner-integration1', target: 'integration', label: 'данные' },
       { source: 'runner-integration2', target: 'otherServer', label: 'данныедля отчетов' },
-      { source: 'api', target: 'firebase', label: 'данные для отчетов' },
+      { source: 'api', target: 'firebase', label: 'запросы' },
       { source: 'firebase', target: 'client', label: 'данные в push-сообщениях' },
       { source: 'service-group1', target: 'logger', label: 'логи syslog' },
-      // { source: 'integration', target: 'api', label: 'уведомления' },
+      { source: 'integration', target: 'api', label: 'уведомления' },
     ],
+    positions: [
+      { id: 'client', row: 2, col: 1,},
+      { id: 'agent-backend', row: 2, col: 3,},
+      { id: 'web', row: 6, col: 3,},
+      { id: 'www', row: 1, col: 3,},
+      { id: 'mongodb1', row: 1, col: 4,},
+      { id: 'mongodb2', row: 2, col: 5,},
+      { id: 'runner-integration1', row: 3, col: 3,},
+      { id: 'runner-integration2', row: 4, col: 3,},
+      { id: 'api', row: 5, col: 3,},
+      { id: 'integration', row: 6, col: 7,},
+      { id: 'otherServer', row: 4, col: 7,},
+      { id: 'firebase', row: 4, col: 1,},
+      { id: 'logger', row: 2, col: 7,},
+    ]
   };
 
   Diagram('cy2', elements);
-  */
+
 </script>
 
 <div id="cy3"></div>
