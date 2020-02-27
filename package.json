@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/antirek/scheme-as-code/issues"
   },
-  "homepage": "https://github.com/antirek/scheme-as-code#readme"
+  "homepage": "https://github.com/antirek/scheme-as-code#readme",
+  "dependencies": {
+    "cose-base": "^1.0.1",
+    "cytoscape": "^3.14.0",
+    "cytoscape-fcose": "^1.2.0",
+    "layout-base": "^1.0.2",
+    "numeric": "^1.2.6"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-util": "^3.0.8"
+  }
 }

@@ -6,14 +6,7 @@
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
 <title>Scheme as code</title>
 
-<script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
-
-<script src="https://unpkg.com/numeric/numeric-1.2.6.js"></script>
-<script src="https://unpkg.com/layout-base/layout-base.js"></script>
-<script src="https://unpkg.com/cose-base/cose-base.js"></script>
-<script src="https://ivis-at-bilkent.github.io/cytoscape.js-fcose/cytoscape-fcose.js"></script>
-
-<script src="code.js"></script>
+<script src="dist/code-full.min.js"></script>
 </head>
 <body>
 <div id="cy"></div>
@@ -53,7 +46,7 @@
   r.nodes(n);
   r.groups(g);
   r.positions(p);
-  r.render('cy');
+  r.render('cy', 'grid');
 
 </script>
 
@@ -115,7 +108,7 @@
     ],
   };
 
-  Diagram('cy2', elements);
+  Diagram('cy2', elements, {layout: 'grid'});
 
 </script>
 
