@@ -119,7 +119,25 @@ const Diagram = function(id, elements) {
             }),        
         elements,
         layout: {
-          name: 'grid',
+          name: 'fcose',
+            /* spectral layout options */
+            idealEdgeLength: 150,
+            // Divisor to compute edge forces
+            edgeElasticity: 0.7,
+            // Nesting factor (multiplier) to compute ideal edge length for nested edges
+            nestingFactor: 0.7,
+  // False for random, true for greedy sampling
+  samplingType: true,
+  // Sample size to construct distance matrix
+  sampleSize: 75,
+  // Separation amount between nodes
+  nodeSeparation: 950,
+  tile: true,  
+  // Represents the amount of the vertical space to put between the zero degree members during the tiling operation(can also be a function)
+  tilingPaddingVertical: 30,
+  // Represents the amount of the horizontal space to put between the zero degree members during the tiling operation(can also be a function)
+  tilingPaddingHorizontal: 30,
+  /*
           rows: 5,
           cols: 5,
           position: function(node) {
@@ -128,6 +146,7 @@ const Diagram = function(id, elements) {
              col: node.position('col'),
             };
           }
+        */
         },
       });
 
