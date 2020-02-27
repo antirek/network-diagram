@@ -27,6 +27,7 @@
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
-    "gulp-util": "^3.0.8"
+    "gulp-util": "^3.0.8",
+    "image-to-base64": "^2.0.1"
   }
 }
