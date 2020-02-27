@@ -90,7 +90,7 @@ const Diagram = function(id, elements, options) {
   };
 
   const prepareStylesheet = function() {
-    return cytoscape.stylesheet()
+    let sheet = cytoscape.stylesheet()
       .selector('node')
         .css({
           'height': 30,
@@ -111,29 +111,23 @@ const Diagram = function(id, elements, options) {
           'curve-style': 'bezier',
           'label': 'data(label)',
           'text-background': '#FFF',
-        })
-      .selector('.server')
-        .css({
-          'background-image': icons['server'],
-          'background-opacity': 0, // do not show the bg colour
-          'border-width': 0, // no border that would increase node size
-          'background-clip': 'none' // 
-        })
-      .selector('.client')
-        .css({
-          'background-image': icons['client'],
-          'background-opacity': 0, // do not show the bg colour
-          'border-width': 0, // no border that would increase node size
-          'background-clip': 'none' // 
-        })
-      .selector('.database')
-        .css({
-          'background-image': icons['database'],
-          'background-opacity': 0, // do not show the bg colour
-          'border-width': 0, // no border that would increase node size
-          'background-clip': 'none' // 
         });
 
+    const appendIconClass = function (stylesheet, cssClass) {
+      return stylesheet.selector('.' + cssClass)
+        .css({
+          'background-image': icons[cssClass],
+          'background-opacity': 0,
+          'border-width': 0,
+          'background-clip': 'none',
+        });
+    };
+    
+    for (const prop in icons) {
+      sheet = appendIconClass(sheet, prop);
+    }
+
+    return sheet;
   };
 
   const render = function(element, layout = 'auto') {

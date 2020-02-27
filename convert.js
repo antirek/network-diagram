@@ -19,6 +19,10 @@ const images = [
     name: 'client',
     file: 'images/black/client.png',
   },
+  {
+    name: 'worker',
+    file: 'images/black/worker.png',
+  },
 ];
 
 const cv = async function(image) {

@@ -61,15 +61,15 @@
       { id: 'service-group2', label: 'Группа сервисов 2'},
     ],
     nodes: [
-      { id: 'client', type: 'client', label: 'Клиент'},
+      { id: 'client', type: 'smartphone', label: 'Клиент'},
       
       { id: 'agent-backend', type: 'server', group: 'service-group1', label: 'agent-backend'},
       { id: 'web', type: 'server', group: 'service-group1', label: 'Приложение Записи мобильных'},
       { id: 'www', type: 'server', group: 'service-group1', label: 'страница загрузки'},
       { id: 'mongodb1', type: 'database', group: 'service-group1', label: 'Mongo DB 1'},
       { id: 'mongodb2', type: 'database', group: 'service-group1', label: 'Mongo DB 2'},
-      { id: 'runner-integration1', type: 'server', group: 'service-group1', label: 'отправка'},
-      { id: 'runner-integration2', type: 'server', group: 'service-group1', label: 'отправка'},
+      { id: 'runner-integration1', type: 'worker', group: 'service-group1', label: 'отправка'},
+      { id: 'runner-integration2', type: 'worker', group: 'service-group1', label: 'отправка'},
       { id: 'api', type: 'server', group: 'service-group1', label: 'API для внутренних сервисов'},
 
       { id: 'integration', type: 'server', group:'service-group2', label: 'Интеграция CRM'},
