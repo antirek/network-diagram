@@ -16,12 +16,16 @@ const images = [
     file: 'images/black/database.png',
   },
   {
-    name: 'client',
-    file: 'images/black/client.png',
+    name: 'person',
+    file: 'images/black/person.png',
   },
   {
     name: 'worker',
     file: 'images/black/worker.png',
+  },
+  {
+    name: 'cloud',
+    file: 'images/black/cloud.png',
   },
 ];
 

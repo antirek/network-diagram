@@ -22,7 +22,7 @@
   ];
 
   const n = [
-    { id: 'client', type: 'client', label: 'Our dear customer'},
+    { id: 'client', type: 'person', label: 'Our dear customer'},
     { id: 'server', type: 'server', label: 'Main Server'},
     { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
     { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
@@ -61,7 +61,8 @@
       { id: 'service-group2', label: 'Группа сервисов 2'},
     ],
     nodes: [
-      { id: 'client', type: 'smartphone', label: 'Клиент'},
+      { id: 'man1', type: 'person', label: 'Человек'},
+      { id: 'client', type: 'smartphone', label: 'Смартфон'},
       
       { id: 'agent-backend', type: 'server', group: 'service-group1', label: 'agent-backend'},
       { id: 'web', type: 'server', group: 'service-group1', label: 'Приложение Записи мобильных'},
@@ -76,6 +77,7 @@
       { id: 'otherServer', type: 'server', group:'service-group2', label: 'сервер'},
       { id: 'firebase', type: 'server', label: 'Google Firebase'},
       { id: 'logger', type: 'server', group:'service-group2', label: 'Сервер логов'},
+      { id: 'crm', type: 'cloud', label: 'Cloud CRM'},
     ],
     edges: [
       { source: 'client', target: 'agent-backend', label: 'json данные' },
@@ -90,6 +92,8 @@
       { source: 'firebase', target: 'client', label: 'данные в push-сообщениях' },
       { source: 'service-group1', target: 'logger', label: 'логи syslog' },
       { source: 'integration', target: 'api', label: 'уведомления' },
+      { source: 'integration', target: 'crm', label: 'данные' },
+      { source: 'man1', target: 'client', label: 'совершает звонки' },
     ],
     positions: [
       { id: 'client', row: 2, col: 1,},
@@ -105,6 +109,7 @@
       { id: 'otherServer', row: 4, col: 7,},
       { id: 'firebase', row: 4, col: 1,},
       { id: 'logger', row: 2, col: 7,},
+      { id: 'crm', row: 5, col: 8,},
     ],
   };
 
