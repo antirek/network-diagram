@@ -13,8 +13,33 @@ const Diagram = function(id, elements, options) {
     });
   };
 
+  const preparePositions = function(positionsIn) {
+    if (!positionsIn) return;
+    const getCol = function(str) {
+      if (!str) return;
+      const symbol = str.substr(0, 1).toLowerCase();
+      const index = symbol.charCodeAt(0) - 97;
+      return (index >= 0 && index <= 26) ? index : 0;
+    };
+    const getRow = function(str) {
+      if (!str) return;
+      const symbol = str.substr(1, 2).toLowerCase();
+      const index = Number(symbol);
+      return (index >= 0 && index <= 50) ? index : 0;
+    };
+    const positions = positionsIn.map((position) => {
+      return {
+        id: position.id,
+        col: getCol(position.p) || position.col,
+        row: getRow(position.p) || position.row,
+      };
+    });
+    // console.log('pos', positions)
+    return positions;
+  };
+
   const addPositions = function(positionsIn) {
-    positions = positionsIn;
+    positions = preparePositions(positionsIn);
     optLayout = positionsIn ? 'grid' : optLayout;
   };
 
@@ -98,11 +123,12 @@ const Diagram = function(id, elements, options) {
     const getColor = function(ele) {
       return ele.data('color') || '#ffaaaa';
     };
-
-    const getLabel = function(ele) {
+    const getEdgeLabel = function(ele) {
       return ele.data('label') || '';
     };
-
+    const getNodeLabel = function(ele) {
+      return ele.data('label') || ele.data('id');
+    };
     let sheet = cytoscape.stylesheet()
         .selector('node')
         .css({
@@ -111,7 +137,7 @@ const Diagram = function(id, elements, options) {
           'background-fit': 'cover',
           'border-color': '#000',
           'border-width': 0,
-          'content': getLabel,
+          'content': getNodeLabel,
           'text-valign': 'top',
           'text-halign': 'center',
         })
@@ -122,7 +148,7 @@ const Diagram = function(id, elements, options) {
           'line-color': getColor,
           'target-arrow-color': getColor,
           'curve-style': 'bezier',
-          'label': getLabel,
+          'label': getEdgeLabel,
           'text-background': '#FFF',
         });
 

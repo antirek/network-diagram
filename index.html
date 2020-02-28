@@ -14,13 +14,13 @@
   const elements1 = {    
     nodes: [
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
-      { id: 'server', type: 'server', label: 'Main Server'},
+      { id: 'server', type: 'server', },
       { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
       { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
     ],
     edges: [
       { source: 'client', target: 'server', label: 'request' },
-      { source: 'server', target: 'db1', label: 'request' },
+      { source: 'server', target: 'db1', color: 'red' },
       { source: 'server', target: 'db2', label: 'request' },
     ],
   };
@@ -299,6 +299,40 @@
     ],
   };
   Diagram('scheme7', elements7);
+</script>
+
+
+<h3>Layout = grid, groups, positions = 'a1' (Sea battle syntax)</h3>
+<div id="scheme8" style="height:300px;width:800px;"></div>
+<script>
+  const elements8 = {
+    nodes: [
+      { id: 'client', type: 'smartphone', label: 'Смартфон'},
+      { id: 'server', type: 'server', label: 'Main Server'},
+      { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
+      { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+      { id: 'db3', type: 'database', group: 'db cluster', label: 'DB 3'},
+      { id: 'db4', type: 'database', group: 'db cluster', label: 'DB 4'},
+      { id: 'db5', type: 'database', group: 'db cluster', label: 'DB 5'},
+    ],
+    edges: [
+      { source: 'server', target: 'db cluster', label: 'grpc' },
+      { source: 'client', target: 'server', label: 'request' },
+    ],
+    groups: [
+      { id: 'db cluster', label: 'Main Database cluster'},
+    ],
+    positions: [
+      { id: 'client', p: 'a3', },
+      { id: 'server', p: 'c2', },
+      { id: 'db1', p: 'd2', },
+      { id: 'db2', p: 'd3', },
+      { id: 'db3', p: 'e4', },
+      { id: 'db4', p: 'd1', },
+      { id: 'db5', p: 'd0', },
+    ],
+  };
+  Diagram('scheme8', elements8);
 </script>
 
 </body>
