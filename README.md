@@ -154,5 +154,8 @@
   Diagram('scheme', elements);
 ````
 
+## Примеры
+
 Еще примеры схем https://antirek.github.io/network-diagram/
 
+![](examples/example2.png)
