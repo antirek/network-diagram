@@ -48,13 +48,13 @@
 `````javascript
 <script>      
   const elements = {    
-    nodes: [
+    nodes: [                                                    // описываем узлы
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
       { id: 'server', type: 'server', label: 'Main Server'},
       { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
       { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
     ],
-    edges: [
+    edges: [                                                    // указываем связи
       { source: 'client', target: 'server', label: 'request' },
       { source: 'server', target: 'db1', label: 'request' },
       { source: 'server', target: 'db2', label: 'request' },
@@ -156,6 +156,6 @@
 
 ## Примеры
 
-Еще примеры схем https://antirek.github.io/network-diagram/
+Еще примеры схем: группы, цветные связи, позиции а-ля "Морской бой" https://antirek.github.io/network-diagram/
 
 ![](examples/example2.png)
