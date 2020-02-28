@@ -30,7 +30,7 @@
 1. Добавьте в ваш html загрузку скрипта
 
 `````javascript
-<script src="https://unpkg.com/@antirek/network-diagram@0.1.1/dist/code-full.min.js"></script>
+<script src="https://unpkg.com/@antirek/network-diagram@0.1.2/dist/code-full.min.js"></script>
 
 `````
 2. Добавьте div для схемы, задав ширину и высоту
