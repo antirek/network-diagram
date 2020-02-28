@@ -13,19 +13,19 @@ const filesConcatArray = [
   'code.js',
 ];
 
-gulp.task('icons', function (cb) {
-  exec('node ./convert.js', function (err, stdout, stderr) {
+gulp.task('icons', function(cb) {
+  exec('node ./convert.js', function(err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
   });
-})
+});
 
 gulp.task('concat', (done) => {
   gulp.src(filesConcatArray)
-    .pipe(concat('code-full.min.js'))
-    .pipe(gulp.dest('dist'))
-    .on('error', gutil.log);
+      .pipe(concat('code-full.min.js'))
+      .pipe(gulp.dest('dist'))
+      .on('error', gutil.log);
   done();
 });
 

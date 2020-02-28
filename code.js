@@ -8,53 +8,57 @@ const Diagram = function(id, elements, options) {
 
   const addGroups = function(groupsIn) {
     if (!groupsIn) return;
-    groups = groupsIn.map(item => {
+    groups = groupsIn.map((item) => {
       return {data: item};
-    })
-  }
+    });
+  };
 
   const addPositions = function(positionsIn) {
     positions = positionsIn;
-  }
+    optLayout = positionsIn ? 'grid' : optLayout;
+  };
 
   const findPositionForNodeById = function(id) {
     if (!positions) return;
-    return positions.find(position=> position.id === id);
-  }
+    return positions.find((position)=> position.id === id);
+  };
 
   const appendPositionsToNodes = function(nodes) {
     if (!positions) return nodes;
-    return nodes.map(node => {
-      const position = findPositionForNodeById(node.data.id);      
+    return nodes.map((node) => {
+      const position = findPositionForNodeById(node.data.id);
       if (position) {
-        node.position = {row: position.row, col:position.col,};
+        node.position = {
+          row: position.row,
+          col: position.col,
+        };
       }
       return node;
-    })
-  }
+    });
+  };
 
   const addEdges = function(edgesIn) {
-    edges = edgesIn.map(item => {
+    edges = edgesIn.map((item) => {
       return {data: item};
-    })
-  }
+    });
+  };
 
   const addNodes = function(nodesIn) {
-    nodes = nodesIn.map(item=> {
+    nodes = nodesIn.map((item)=> {
       return {data: {
-        id: item.id, 
+        id: item.id,
         label: item.label,
         parent: item.group,
       }, classes: [item.type]};
-    })
-  }
+    });
+  };
 
-  const addElements = function ({groups, edges, nodes, positions}) {
+  const addElements = function({groups, edges, nodes, positions}) {
     addGroups(groups);
     addNodes(nodes);
     addEdges(edges);
     addPositions(positions);
-  }
+  };
 
   const autoDefaultParams = function() {
     return {
@@ -65,11 +69,11 @@ const Diagram = function(id, elements, options) {
       samplingType: true,
       sampleSize: 75,
       nodeSeparation: 950,
-      tile: true,  
+      tile: true,
       tilingPaddingVertical: 30,
       tilingPaddingHorizontal: 30,
     };
-  }
+  };
 
   const gridDefaultParams = function() {
     return {
@@ -78,12 +82,12 @@ const Diagram = function(id, elements, options) {
       cols: 5,
       position: function(node) {
         return {
-         row: node.position('row'),
-         col: node.position('col'),
+          row: node.position('row'),
+          col: node.position('col'),
         };
-      }
-    }
-  }
+      },
+    };
+  };
 
   const layouts = {
     'auto': autoDefaultParams(),
@@ -91,41 +95,51 @@ const Diagram = function(id, elements, options) {
   };
 
   const prepareStylesheet = function() {
+    const getColor = function(ele) {
+      return ele.data('color') || '#ffaaaa';
+    };
+
+    const getLabel = function(ele) {
+      return ele.data('label') || '';
+    };
+
     let sheet = cytoscape.stylesheet()
-      .selector('node')
+        .selector('node')
         .css({
           'height': 30,
           'width': 30,
           'background-fit': 'cover',
           'border-color': '#000',
           'border-width': 0,
-          'content': 'data(label)',
+          'content': getLabel,
           'text-valign': 'top',
           'text-halign': 'center',
-        })          
-      .selector('edge')
+        })
+        .selector('edge')
         .css({
           'width': 2,
           'target-arrow-shape': 'triangle',
-          'line-color': '#ffaaaa',
-          'target-arrow-color': '#ffaaaa',
+          'line-color': getColor,
+          'target-arrow-color': getColor,
           'curve-style': 'bezier',
-          'label': 'data(label)',
+          'label': getLabel,
           'text-background': '#FFF',
         });
 
-    const appendIconClass = function (stylesheet, cssClass) {
+    const appendIconClass = function(stylesheet, cssClass) {
       return stylesheet.selector('.' + cssClass)
-        .css({
-          'background-image': icons[cssClass],
-          'background-opacity': 0,
-          'border-width': 0,
-          'background-clip': 'none',
-        });
+          .css({
+            'background-image': DiagramIcons[cssClass],
+            'background-opacity': 0,
+            'border-width': 0,
+            'background-clip': 'none',
+          });
     };
-    
-    for (const prop in icons) {
-      sheet = appendIconClass(sheet, prop);
+
+    for (const prop in DiagramIcons) {
+      if (Object.prototype.hasOwnProperty.call(DiagramIcons, prop)) {
+        sheet = appendIconClass(sheet, prop);
+      }
     }
 
     return sheet;
@@ -134,35 +148,33 @@ const Diagram = function(id, elements, options) {
   const render = function(element, layout = 'auto') {
     optLayout = optLayout || layout;
 
-    const renderDiagram = function () {
-      
+    const renderDiagram = function() {
       Array.prototype.push.apply(nodes, groups);
       nodes = appendPositionsToNodes(nodes);
-      
+
       const elements = {
         nodes,
         edges,
       };
-      console.log('elements', elements);
-      var cy = cytoscape({
-        container: document.getElementById(element),      
+      // console.log('elements', elements);
+      cytoscape({
+        container: document.getElementById(element),
         boxSelectionEnabled: true,
         autounselectify: true,
         style: prepareStylesheet(),
         elements,
-        layout: layouts[optLayout]
+        layout: layouts[optLayout],
       });
-
     };
 
-    if (document.readyState == "complete") {
+    if (document.readyState == 'complete') {
       renderDiagram();
     } else {
-      document.addEventListener("DOMContentLoaded", function(event) {         
+      document.addEventListener('DOMContentLoaded', function(event) {
         renderDiagram();
       });
     }
-  }
+  };
 
   if (id && elements) {
     addElements(elements);

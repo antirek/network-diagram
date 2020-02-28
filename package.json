@@ -4,7 +4,8 @@
   "description": "simple network diagram so fast as write two lines of code ;)",
   "main": "dist/code-full.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
     "cose-base": "^1.0.1",
     "cytoscape": "^3.14.0",
     "cytoscape-fcose": "^1.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
     "layout-base": "^1.0.2",
     "lodash.template": ">=4.5.0",
     "numeric": "^1.2.6"
