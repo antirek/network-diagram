@@ -8,7 +8,7 @@
 
 Вот код, который описывает эту схему
 
-`````
+`````javascript
   const elements = {
     nodes: [                                                    // описываем узлы
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
@@ -29,13 +29,13 @@
 
 1. Добавьте в ваш html загрузку скрипта
 
-`````
+`````javascript
 <script src="https://unpkg.com/@antirek/network-diagram@0.1.1/dist/code-full.min.js"></script>
 
 `````
 2. Добавьте div для схемы, задав ширину и высоту
 
-`````
+`````javascript
   <div id="scheme1" style="height:300px;width:800px;"></div>
 `````
 
@@ -45,7 +45,7 @@
 
 - укажите связи: source - id узла, target - id узла
 
-`````
+`````javascript
 <script>      
   const elements = {    
     nodes: [
@@ -64,7 +64,7 @@
 </script>
 `````
 
-Весь этот код в одном файле[example.html](examples/example.html)
+Весь этот код в одном файле [example.html](examples/example.html)
 
 ## Опции
 
@@ -72,7 +72,7 @@
 
 - укажите id узла и позицию: row - номер строки, col - номер колонки
 
-`````
+`````javascript
   positions: [
     { id: 'client', row: 1, col: 2, },
     { id: 'server', row: 2, col: 4, },
@@ -83,7 +83,7 @@
 
 #### Пример кода layout = grid
 
-`````
+`````javascript
   const elements = {    
     nodes: [
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
@@ -135,7 +135,7 @@
 
 Для nodes можно указать group. Список group необходимо указать в elements.
 
-````
+`````javascript
   const elements = {
     nodes: [
       { id: 'client', type: 'smartphone', label: 'Smartphone'},
@@ -152,7 +152,7 @@
     ],
   };
   Diagram('scheme', elements);
-````
+`````
 
 ## Примеры
 
