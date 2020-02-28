@@ -41,20 +41,24 @@
 
 3. Опишите вашу схему сети
 
+- опишите узлы: id, type, label
+
+- укажите связи: source - id узла, target - id узла
+
 `````
 <script>      
-  const elements = {
-    edges: [
-      { source: 'client', target: 'server', label: 'request' },
-      { source: 'server', target: 'db1', label: 'request' },
-      { source: 'server', target: 'db2', label: 'request' },
-    ],
+  const elements = {    
     nodes: [
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
       { id: 'server', type: 'server', label: 'Main Server'},
       { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
       { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
-    ]
+    ],
+    edges: [
+      { source: 'client', target: 'server', label: 'request' },
+      { source: 'server', target: 'db1', label: 'request' },
+      { source: 'server', target: 'db2', label: 'request' },
+    ],
   };
   Diagram('scheme1', elements);
 </script>
@@ -65,6 +69,8 @@
 ## Опции
 
 Для отрисовки схемы используется [cytoscape.js](https://js.cytoscape.org/). Схема отрисовывается в двух режимах: auto и grid. Для grid режима необходимо указать positions. Positions - это список элементов с указанием строки и колонки их расположения. Явное указание positions позволяет точно зафиксировать вид схемы.
+
+- укажите id узла и позицию: row - номер строки, col - номер колонки
 
 `````
   positions: [
@@ -78,17 +84,17 @@
 #### Пример кода layout = grid
 
 `````
-  const elements = {
-    edges: [
-      { source: 'client', target: 'server', label: 'request' },
-      { source: 'server', target: 'db1', label: 'request' },
-      { source: 'server', target: 'db2', label: 'request' },
-    ],
+  const elements = {    
     nodes: [
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
       { id: 'server', type: 'server', label: 'Main Server'},
       { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
       { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+    ],
+    edges: [
+      { source: 'client', target: 'server', label: 'request' },
+      { source: 'server', target: 'db1', label: 'request' },
+      { source: 'server', target: 'db2', label: 'request' },
     ],
     positions: [
       { id: 'client', row: 1, col: 2, },
@@ -100,7 +106,15 @@
   Diagram('scheme', elements, {layout:'grid'});
 `````
 
-## Типы объектов
+## Типы elements
+
+- nodes - узлы
+- edges - связи
+- groups - группы
+- positions - расположение (для layout = grid)
+
+
+## Типы nodes
 
 Для nodes можно указать type, который меняет отображаемую иконку объекта. 
 
@@ -108,15 +122,37 @@
 
 - smartphone
 - desktop
+- notebook
 - server
 - pod
 - database
+- cloud
+- person
+- webpage
+
 
 ## Группы
 
 Для nodes можно указать group. Список group необходимо указать в elements.
 
+````
+  const elements = {
+    nodes: [
+      { id: 'client', type: 'smartphone', label: 'Smartphone'},
+      { id: 'server', type: 'server', label: 'Main Server'},
+      { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
+      { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+    ],
+    edges: [
+      { source: 'server', target: 'db cluster', label: 'grpc' },
+      { source: 'client', target: 'server', label: 'request' },
+    ],
+    groups: [
+      { id: 'db cluster', label: 'Main Database cluster'},
+    ],
+  };
+  Diagram('scheme', elements);
+````
 
+Еще примеры схем https://antirek.github.io/network-diagram/
 
-
-Еще примеры схем

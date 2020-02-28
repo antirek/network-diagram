@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="style.css" rel="stylesheet" />
 <meta charset=utf-8 />
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
 <title>Network diagram as code</title>
-
 <script src="dist/code-full.min.js"></script>
 </head>
-<body>
+<body style="font:14px helvetica neue, helvetica, arial, sans-serif;">
 
 <h3>Layout = auto</h3>
-<div id="scheme1" style="height: 300px;width: 800px;"></div>
-<script>      
-  const elements = {
-    edges: [
-      { source: 'client', target: 'server', label: 'request' },
-      { source: 'server', target: 'db1', label: 'request' },
-      { source: 'server', target: 'db2', label: 'request' },
-    ],
+<div id="scheme1" style="height:300px;width:800px;"></div>
+<script>
+  const elements1 = {    
     nodes: [
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
       { id: 'server', type: 'server', label: 'Main Server'},
       { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
       { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
-    ]
+    ],
+    edges: [
+      { source: 'client', target: 'server', label: 'request' },
+      { source: 'server', target: 'db1', label: 'request' },
+      { source: 'server', target: 'db2', label: 'request' },
+    ],
   };
-  Diagram('scheme1', elements);
+  Diagram('scheme1', elements1);
 </script>
 
 
 <h3>Layout = grid</h3>
-<div id="scheme2" style="height: 300px;width: 800px;"></div>
+<div id="scheme2" style="height:300px;width:800px;"></div>
 <script>      
-  const elements2 = {
-    edges: [
-      { source: 'client', target: 'server', label: 'request' },
-      { source: 'server', target: 'db1', label: 'request' },
-      { source: 'server', target: 'db2', label: 'request' },
-    ],
+  const elements2 = {    
     nodes: [
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
       { id: 'server', type: 'server', label: 'Main Server'},
       { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
       { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+    ],
+    edges: [
+      { source: 'client', target: 'server', label: 'request' },
+      { source: 'server', target: 'db1', label: 'request' },
+      { source: 'server', target: 'db2', label: 'request' },
     ],
     positions: [
       { id: 'client', row: 1, col: 2, },
@@ -56,53 +54,69 @@
 </script>
 
 
-<div id="scheme3" style="height: 300px;width: 800px;"></div>
+<h3>Layout = auto, groups</h3>
+<div id="scheme3" style="height:300px;width:800px;"></div>
 <script>
-  
-  const e = [
-    { source: 'server', target: 'db cluster', label: 'grpc' },
-    { source: 'client', target: 'server', label: 'request' },
-  ];
-
-  const g = [
-    { id: 'db cluster', label: 'Main Database cluster'},
-  ];
-
-  const n = [
-    { id: 'client', type: 'person', label: 'Our dear customer'},
-    { id: 'server', type: 'server', label: 'Main Server'},
-    { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
-    { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
-    { id: 'db3', type: 'database', group: 'db cluster', label: 'DB 3'},
-    { id: 'db4', type: 'database', group: 'db cluster', label: 'DB 4'},
-    { id: 'db5', type: 'database', group: 'db cluster', label: 'DB 5'},
-  ];
-
-  const p = [
-    { id: 'client', row: 1, col: 0, },
-    { id: 'server', row: 2, col: 2, },
-    { id: 'db1', row: 2, col: 3, },
-    { id: 'db2', row: 3, col: 3, },
-    { id: 'db3', row: 4, col: 8, },
-    { id: 'db4', row: 1, col: 3, },
-    { id: 'db5', row: 0, col: 3, },
-  ];
-
-  const r = Diagram();
-  r.edges(e);
-  r.nodes(n);
-  r.groups(g);
-  r.positions(p);
-  r.render('scheme3', 'grid');
-
+  const elements3 = {
+    nodes: [
+      { id: 'client', type: 'smartphone', label: 'Smartphone'},
+      { id: 'server', type: 'server', label: 'Main Server'},
+      { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
+      { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+      { id: 'db3', type: 'database', group: 'db cluster', label: 'DB 3'},
+      { id: 'db4', type: 'database', group: 'db cluster', label: 'DB 4'},
+      { id: 'db5', type: 'database', group: 'db cluster', label: 'DB 5'},
+    ],
+    edges: [
+      { source: 'server', target: 'db cluster', label: 'grpc' },
+      { source: 'client', target: 'server', label: 'request' },
+    ],
+    groups: [
+      { id: 'db cluster', label: 'Main Database cluster'},
+    ],
+  };
+  Diagram('scheme3', elements3);
 </script>
 
-<div id="cy2"></div>
 
-
+<h3>Layout = grid, groups</h3>
+<div id="scheme4" style="height:300px;width:800px;"></div>
 <script>
-  /*
-  const elements = {
+  const elements4 = {
+    nodes: [
+      { id: 'client', type: 'smartphone', label: 'Смартфон'},
+      { id: 'server', type: 'server', label: 'Main Server'},
+      { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
+      { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+      { id: 'db3', type: 'database', group: 'db cluster', label: 'DB 3'},
+      { id: 'db4', type: 'database', group: 'db cluster', label: 'DB 4'},
+      { id: 'db5', type: 'database', group: 'db cluster', label: 'DB 5'},
+    ],
+    edges: [
+      { source: 'server', target: 'db cluster', label: 'grpc' },
+      { source: 'client', target: 'server', label: 'request' },
+    ],
+    groups: [
+      { id: 'db cluster', label: 'Main Database cluster'},
+    ],
+    positions: [
+      { id: 'client', row: 1, col: 0, },
+      { id: 'server', row: 2, col: 2, },
+      { id: 'db1', row: 2, col: 3, },
+      { id: 'db2', row: 3, col: 3, },
+      { id: 'db3', row: 4, col: 4, },
+      { id: 'db4', row: 1, col: 3, },
+      { id: 'db5', row: 0, col: 3, },
+    ],
+  };
+  Diagram('scheme4', elements4, {layout: 'grid'});
+</script>
+
+
+<h3>Complex diagram</h3>
+<div id="scheme5" style="height:500px;width:800px;"></div>
+<script>
+  const elements5 = {
     groups: [
       { id: 'service-group1', label: 'Группа сервисов 1'},
       { id: 'service-group2', label: 'Группа сервисов 2'},
@@ -163,12 +177,8 @@
       { id: 'crm', row: 5, col: 8,},
     ],
   };
-
-  Diagram('cy2', elements, {layout: 'grid'});
-  */
+  Diagram('scheme5', elements5, {layout: 'grid'});
 </script>
-
-<div id="cy3"></div>
 
 
 </body>
