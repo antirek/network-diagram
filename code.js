@@ -7,6 +7,7 @@ const Diagram = function(id, elements, options) {
   let optLayout = options ? options.layout : null;
 
   const addGroups = function(groupsIn) {
+    if (!groupsIn) return;
     groups = groupsIn.map(item => {
       return {data: item};
     })

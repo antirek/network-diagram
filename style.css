@@ -19,12 +19,3 @@ body {
   width: 500px;
   border: #c88 1px solid;
 }
-
-#eat {
-  position: absolute;
-  left: 1em;
-  top: 1em;
-  font-size: 1em;
-  z-index: -1;
-  color: #c88;
-}
