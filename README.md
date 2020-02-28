@@ -36,7 +36,7 @@
 2. Добавьте div для схемы, задав ширину и высоту
 
 `````
-  <div id="scheme1" style="height: 300px;width: 800px;"></div>
+  <div id="scheme1" style="height:300px;width:800px;"></div>
 `````
 
 3. Опишите вашу схему сети
@@ -64,7 +64,7 @@
 </script>
 `````
 
-Подробнее в [example.html](examples/example.html)
+Весь этот код в одном файле[example.html](examples/example.html)
 
 ## Опции
 
