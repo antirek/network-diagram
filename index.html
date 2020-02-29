@@ -123,12 +123,7 @@
     ],
     nodes: [
       { id: 'man1', type: 'person', label: 'Человек'},
-      { id: 'notebook', type: 'notebook', label: 'Ноутбук'},
-      { id: 'desktop', type: 'desktop', label: 'Компьютер'},
       { id: 'client', type: 'smartphone', label: 'Смартфон'},
-      { id: 'webpage', type: 'webpage', label: 'Интернет страница'},
-      { id: 'pod', type: 'pod', label: 'Под'},
-      { id: 'document', type: 'document', label: 'Документ'},
       
       { id: 'agent-backend', type: 'server', group: 'service-group1', label: 'agent-backend'},
       { id: 'web', type: 'server', group: 'service-group1', label: 'Приложение Записи мобильных'},
@@ -192,11 +187,7 @@
     ],
     nodes: [
       { id: 'man1', type: 'person', label: 'Человек'},
-      { id: 'notebook', type: 'notebook', label: 'Ноутбук'},
-      { id: 'desktop', type: 'desktop', label: 'Компьютер'},
       { id: 'client', type: 'smartphone', label: 'Смартфон'},
-      { id: 'webpage', type: 'webpage', label: 'Интернет страница'},
-      { id: 'pod', type: 'pod', label: 'Под'},
       
       { id: 'agent-backend', type: 'server', group: 'service-group1', label: 'agent-backend'},
       { id: 'web', type: 'server', group: 'service-group1', label: 'Приложение Записи мобильных'},
@@ -260,11 +251,7 @@
     ],
     nodes: [
       { id: 'man1', type: 'person', label: 'Человек'},
-      { id: 'notebook', type: 'notebook', label: 'Ноутбук'},
-      { id: 'desktop', type: 'desktop', label: 'Компьютер'},
       { id: 'client', type: 'smartphone', label: 'Смартфон'},
-      { id: 'webpage', type: 'webpage', label: 'Интернет страница'},
-      { id: 'pod', type: 'pod', label: 'Под'},
       
       { id: 'agent-backend', type: 'server', group: 'service-group1', label: 'agent-backend'},
       { id: 'web', type: 'server', group: 'service-group1', label: 'Приложение Записи мобильных'},
@@ -333,6 +320,30 @@
     ],
   };
   Diagram('scheme8', elements8);
+</script>
+
+
+<h3>Node types</h3>
+<div id="scheme9" style="height:300px;width:800px;"></div>
+<script>
+  const elements9 = {
+    nodes: [
+      { id: 'man1', type: 'person', label: 'Человек'},
+      { id: 'notebook', type: 'notebook', label: 'Ноутбук'},
+      { id: 'desktop', type: 'desktop', label: 'Компьютер'},
+      { id: 'client', type: 'smartphone', label: 'Смартфон'},
+      { id: 'webpage', type: 'webpage', label: 'Интернет страница'},
+      { id: 'pod', type: 'pod', label: 'Под'},
+      { id: 'document', type: 'document', label: 'Документ'},
+      { id: 'phone', type: 'phone', label: 'Телефон'},
+      { id: 'worker', type: 'worker', label: 'Процесс'},
+      { id: 'database', type: 'database', label: 'База данных'},
+      { id: 'folder', type: 'folder', label: 'Директория'},
+      { id: 'cloud', type: 'cloud', label: 'Облако'},
+      { id: 'server', type: 'server', label: 'Сервер'},
+    ],
+  };
+  Diagram('scheme9', elements9, {layout: 'grid',});1
 </script>
 
 </body>

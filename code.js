@@ -64,6 +64,7 @@ const Diagram = function(id, elements, options) {
   };
 
   const addEdges = function(edgesIn) {
+    if (!edgesIn) return;
     edges = edgesIn.map((item) => {
       return {data: item};
     });

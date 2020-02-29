@@ -47,6 +47,14 @@ const images = [
     name: 'document',
     file: 'images/black/document.png',
   },
+  {
+    name: 'phone',
+    file: 'images/black/phone.png',
+  },
+  {
+    name: 'folder',
+    file: 'images/black/folder.png',
+  },
 ];
 
 const cv = async function(image) {
