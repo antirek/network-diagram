@@ -1,6 +1,6 @@
 {
   "name": "@antirek/network-diagram",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "simple network diagram so fast as write two lines of code ;)",
   "main": "dist/code-full.min.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "url": "https://github.com/antirek/network-diagram/issues"
   },
   "homepage": "https://github.com/antirek/network-diagram#readme",
-  "dependencies": {
+  "devDependencies": {
     "cose-base": "^1.0.1",
     "cytoscape": "^3.14.0",
     "cytoscape-fcose": "^1.2.0",
@@ -25,9 +25,7 @@
     "eslint-config-google": "^0.14.0",
     "layout-base": "^1.0.2",
     "lodash.template": ">=4.5.0",
-    "numeric": "^1.2.6"
-  },
-  "devDependencies": {
+    "numeric": "^1.2.6",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-util": "^3.0.8",

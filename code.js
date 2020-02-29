@@ -1,5 +1,6 @@
 
 const Diagram = function(id, elements, options) {
+  // version 0.1.3
   let edges;
   let nodes;
   let groups;
