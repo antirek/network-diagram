@@ -161,3 +161,9 @@
 Еще примеры схем: группы, цветные связи, позиции а-ля "Морской бой" https://antirek.github.io/network-diagram/
 
 ![](examples/example2.png)
+
+
+## Онлайн редактор
+
+https://antirek.github.io/network-diagram-editor/
+
