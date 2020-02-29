@@ -13,8 +13,8 @@
     nodes: [                                                    // описываем узлы
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
       { id: 'server', type: 'server', label: 'Main Server'},
-      { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
-      { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+      { id: 'db1', type: 'database', label: 'DB 1'},
+      { id: 'db2', type: 'database', label: 'DB 2'},
     ],
     edges: [                                                    // указываем связи
       { source: 'client', target: 'server', label: 'request' },
@@ -129,6 +129,7 @@
 - cloud
 - person
 - webpage
+- document
 
 
 ## Группы
