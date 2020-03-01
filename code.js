@@ -1,6 +1,6 @@
 
 const Diagram = function(id, elements, options) {
-  // version 0.1.3
+  // version 0.1.4
   let edges;
   let nodes;
   let groups;
@@ -71,6 +71,7 @@ const Diagram = function(id, elements, options) {
   };
 
   const addNodes = function(nodesIn) {
+    if (!nodesIn) return;
     nodes = nodesIn.map((item)=> {
       return {data: {
         id: item.id,

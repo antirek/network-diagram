@@ -30,7 +30,7 @@
 1. Добавьте в ваш html загрузку скрипта
 
 `````javascript
-<script src="https://unpkg.com/@antirek/network-diagram@0.1.3/dist/code-full.min.js"></script>
+<script src="https://unpkg.com/@antirek/network-diagram@0.1.4/dist/code-full.min.js"></script>
 
 `````
 2. Добавьте div для схемы, задав ширину и высоту
@@ -66,7 +66,7 @@
 
 Весь этот код в одном файле [example.html](examples/example.html)
 
-## Опции
+## Позиционирование nodes
 
 Для отрисовки схемы используется [cytoscape.js](https://js.cytoscape.org/). Схема отрисовывается в двух режимах: auto и grid. Для grid режима необходимо указать positions. Positions - это список элементов с указанием строки и колонки их расположения. Явное указание positions позволяет точно зафиксировать вид схемы.
 
@@ -78,6 +78,7 @@
     { id: 'server', row: 2, col: 4, },
     { id: 'db1', row: 1, col: 5, },
     { id: 'db2', row: 3, col: 5, },
+    { id: 'db2', p: 'b7', },           // указываем позицию а-ля Морской бой
   ]
 `````
 
@@ -88,8 +89,8 @@
     nodes: [
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
       { id: 'server', type: 'server', label: 'Main Server'},
-      { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
-      { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+      { id: 'db1', type: 'database', label: 'DB 1'},
+      { id: 'db2', type: 'database', label: 'DB 2'},
     ],
     edges: [
       { source: 'client', target: 'server', label: 'request' },
@@ -161,7 +162,6 @@
 Еще примеры схем: группы, цветные связи, позиции а-ля "Морской бой" https://antirek.github.io/network-diagram/
 
 ![](examples/example2.png)
-
 
 ## Онлайн редактор
 
