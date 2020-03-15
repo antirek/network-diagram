@@ -25,6 +25,7 @@
     "eslint-config-google": "^0.14.0",
     "layout-base": "^1.0.2",
     "lodash.template": ">=4.5.0",
+    "minimist": ">=1.2.2",
     "numeric": "^1.2.6",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
