@@ -1,6 +1,6 @@
 
 const Diagram = function(id, elements, options) {
-  // version 0.1.4
+  // version 0.1.5
   let edges;
   let nodes;
   let groups;
@@ -66,7 +66,9 @@ const Diagram = function(id, elements, options) {
   const addEdges = function(edgesIn) {
     if (!edgesIn) return;
     edges = edgesIn.map((item) => {
-      return {data: item};
+      const classes = [];
+      classes.push(item.direction || 'autorotate');
+      return {data: item, classes};
     });
   };
 
@@ -129,6 +131,15 @@ const Diagram = function(id, elements, options) {
     const getEdgeLabel = function(ele) {
       return ele.data('label') || '';
     };
+    const getLineStyle = function(ele) {
+      return ele.data('line') || 'solid';
+    };
+    const getCurveStyle = function(ele) {
+      return ele.data('style') || 'bezier';
+    };
+    const getTextDirection = function(ele) {
+      return ele.data('direction') || 'autorotate';
+    };
     const getNodeLabel = function(ele) {
       return ele.data('label') || ele.data('id');
     };
@@ -147,12 +158,16 @@ const Diagram = function(id, elements, options) {
         .selector('edge')
         .css({
           'width': 2,
-          'target-arrow-shape': 'triangle',
+          'target-arrow-shape': 'triangle-backcurve',
           'line-color': getColor,
           'target-arrow-color': getColor,
-          'curve-style': 'bezier',
+          'curve-style': getCurveStyle,
           'label': getEdgeLabel,
-          'text-background': '#FFF',
+          'line-style': getLineStyle,
+          'color': '#000',
+          'text-outline-color': '#FFF',
+          'text-outline-width': 1,
+          'edge-text-rotation': getTextDirection,
         });
 
     const appendIconClass = function(stylesheet, cssClass) {
