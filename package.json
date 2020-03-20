@@ -1,6 +1,6 @@
 {
   "name": "@antirek/network-diagram",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "simple network diagram so fast as write two lines of code ;)",
   "main": "dist/code-full.min.js",
   "scripts": {
