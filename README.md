@@ -167,3 +167,7 @@
 
 https://antirek.github.io/network-diagram-editor/
 
+## Обзорная статья на Хабре
+
+https://habr.com/ru/post/491814/
+
