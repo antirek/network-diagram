@@ -1,4 +1,4 @@
-# Схема сети как код
+# Network diagram as code / Схема сети как код
 
 Этот скрипт позволяет нарисовать схему сети, описав ее в виде кода. Нарисовать новую или исправить старую схему - легко - поправить пару строк кода. Смотрите сами ;)
 
@@ -51,13 +51,13 @@
     nodes: [                                                    // описываем узлы
       { id: 'client', type: 'smartphone', label: 'Mobile App'},
       { id: 'server', type: 'server', label: 'Main Server'},
-      { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
-      { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+      { id: 'db1', type: 'database', label: 'DB 1'},
+      { id: 'db2', type: 'database', label: 'DB 2'},
     ],
     edges: [                                                    // указываем связи
-      { source: 'client', target: 'server', label: 'request' },
-      { source: 'server', target: 'db1', label: 'request' },
-      { source: 'server', target: 'db2', label: 'request' },
+      { source: 'client', target: 'server', label: 'request', color: 'red', },
+      { source: 'server', target: 'db1', label: 'request', color: 'red', },
+      { source: 'server', target: 'db2', label: 'request', },
     ],
   };
   Diagram('scheme1', elements);
