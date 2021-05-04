@@ -1,4 +1,3 @@
-
 const Diagram = function(id, elements, options) {
   // version 0.2.0
   let edges;
@@ -34,7 +33,6 @@ const Diagram = function(id, elements, options) {
         row: getRow(position.p) || position.row,
       };
     });
-    // console.log('pos', positions)
     return positions;
   };
 
@@ -181,13 +179,28 @@ const Diagram = function(id, elements, options) {
         edges,
       };
       // console.log('elements', elements);
-      cytoscape({
+      const cy = cytoscape({
         container: document.getElementById(element),
         boxSelectionEnabled: true,
         autounselectify: true,
         style: prepareStylesheet(),
         elements,
         layout: layouts['grid'],
+      });
+
+      cy.gridGuide({
+        snapToGridOnRelease: true,
+        snapToGridDuringDrag: true,
+        gridSpacing: 60,
+        snapToGridCenter: true,
+        panGrid: true,
+        drawGrid: false,
+        guidelinesStyle: {
+          strokeStyle: 'black',
+          horizontalDistColor: '#ff0000',
+          verticalDistColor: 'green',
+          initPosAlignmentColor: '#0000ff',
+        },
       });
     };
 
