@@ -21,6 +21,7 @@
     "cose-base": "^1.0.1",
     "cytoscape": "^3.14.0",
     "cytoscape-fcose": "^1.2.0",
+    "cytoscape-grid-guide": "^2.3.2",
     "eslint": "^7.25.0",
     "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
@@ -31,5 +32,6 @@
     "lodash.template": ">=4.5.0",
     "minimist": ">=1.2.2",
     "numeric": "^1.2.6"
-  }
+  },
+  "dependencies": {}
 }

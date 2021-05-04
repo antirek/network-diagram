@@ -1,11 +1,10 @@
 
 const Diagram = function(id, elements, options) {
-  // version 0.1.5
+  // version 0.2.0
   let edges;
   let nodes;
   let groups;
   let positions;
-  let optLayout = options ? options.layout : null;
 
   const addGroups = function(groupsIn) {
     if (!groupsIn) return;
@@ -41,7 +40,6 @@ const Diagram = function(id, elements, options) {
 
   const addPositions = function(positionsIn) {
     positions = preparePositions(positionsIn);
-    optLayout = positionsIn ? 'grid' : optLayout;
   };
 
   const findPositionForNodeById = function(id) {
@@ -90,21 +88,6 @@ const Diagram = function(id, elements, options) {
     addPositions(positions);
   };
 
-  const autoDefaultParams = function() {
-    return {
-      name: 'fcose',
-      idealEdgeLength: 150,
-      edgeElasticity: 0.7,
-      nestingFactor: 0.7,
-      samplingType: true,
-      sampleSize: 75,
-      nodeSeparation: 950,
-      tile: true,
-      tilingPaddingVertical: 30,
-      tilingPaddingHorizontal: 30,
-    };
-  };
-
   const gridDefaultParams = function() {
     return {
       name: 'grid',
@@ -120,7 +103,6 @@ const Diagram = function(id, elements, options) {
   };
 
   const layouts = {
-    'auto': autoDefaultParams(),
     'grid': gridDefaultParams(),
   };
 
@@ -189,9 +171,7 @@ const Diagram = function(id, elements, options) {
     return sheet;
   };
 
-  const render = function(element, layout = 'auto') {
-    optLayout = optLayout || layout;
-
+  const render = function(element) {
     const renderDiagram = function() {
       Array.prototype.push.apply(nodes, groups);
       nodes = appendPositionsToNodes(nodes);
@@ -207,7 +187,7 @@ const Diagram = function(id, elements, options) {
         autounselectify: true,
         style: prepareStylesheet(),
         elements,
-        layout: layouts[optLayout],
+        layout: layouts['grid'],
       });
     };
 

@@ -8,7 +8,7 @@
 </head>
 <body style="font:14px helvetica neue, helvetica, arial, sans-serif;">
 
-<h3>Layout = auto</h3>
+<h3>Layout = grid, withou positions</h3>
 <div id="scheme1" style="height:300px;width:800px;"></div>
 <script>
   const elements1 = {    
@@ -52,32 +52,6 @@
   };
   Diagram('scheme2', elements2, {layout:'grid'});
 </script>
-
-
-<h3>Layout = auto, groups</h3>
-<div id="scheme3" style="height:300px;width:800px;"></div>
-<script>
-  const elements3 = {
-    nodes: [
-      { id: 'client', type: 'smartphone', label: 'Smartphone'},
-      { id: 'server', type: 'server', label: 'Main Server'},
-      { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
-      { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
-      { id: 'db3', type: 'database', group: 'db cluster', label: 'DB 3'},
-      { id: 'db4', type: 'database', group: 'db cluster', label: 'DB 4'},
-      { id: 'db5', type: 'database', group: 'db cluster', label: 'DB 5'},
-    ],
-    edges: [
-      { source: 'server', target: 'db cluster', label: 'grpc' },
-      { source: 'client', target: 'server', label: 'request' },
-    ],
-    groups: [
-      { id: 'db cluster', label: 'Main Database cluster'},
-    ],
-  };
-  Diagram('scheme3', elements3);
-</script>
-
 
 <h3>Layout = grid, groups</h3>
 <div id="scheme4" style="height:300px;width:800px;"></div>
@@ -240,53 +214,6 @@
   Diagram('scheme6', elements6, {layout: 'grid'});
 </script>
 
-
-<h3>Complex diagram with color edges, layout = auto</h3>
-<div id="scheme7" style="height:500px;width:800px;"></div>
-<script>
-  const elements7 = {
-    groups: [
-      { id: 'service-group1', label: 'Группа сервисов 1'},
-      { id: 'service-group2', label: 'Группа сервисов 2'},
-    ],
-    nodes: [
-      { id: 'man1', type: 'person', label: 'Человек'},
-      { id: 'client', type: 'smartphone', label: 'Смартфон'},
-      
-      { id: 'agent-backend', type: 'server', group: 'service-group1', label: 'agent-backend'},
-      { id: 'web', type: 'server', group: 'service-group1', label: 'Приложение Записи мобильных'},
-      { id: 'www', type: 'server', group: 'service-group1', label: 'страница загрузки'},
-      { id: 'mongodb1', type: 'database', group: 'service-group1', label: 'Mongo DB 1'},
-      { id: 'mongodb2', type: 'database', group: 'service-group1', label: 'Mongo DB 2'},
-      { id: 'runner-integration1', type: 'worker', group: 'service-group1', label: 'отправка'},
-      { id: 'runner-integration2', type: 'worker', group: 'service-group1', label: 'отправка'},
-      { id: 'api', type: 'server', group: 'service-group1', label: 'API для внутренних сервисов'},
-
-      { id: 'integration', type: 'server', group:'service-group2', label: 'Интеграция CRM'},
-      { id: 'otherServer', type: 'server', group:'service-group2', label: 'сервер'},
-      { id: 'firebase', type: 'cloud', label: 'Google Firebase'},
-      { id: 'logger', type: 'server', group:'service-group2', label: 'Сервер логов'},
-      { id: 'crm', type: 'cloud', label: 'Cloud CRM'},
-    ],
-    edges: [
-      { source: 'client', target: 'agent-backend', label: 'json данные' },
-      { source: 'agent-backend', target: 'mongodb1', color: 'black'},
-      { source: 'agent-backend', target: 'mongodb2', color: 'black' },
-      { source: 'mongodb1', target: 'runner-integration1', label: 'данные', color: 'red' },
-      { source: 'mongodb2', target: 'runner-integration2', label: 'данные' },
-      { source: 'mongodb1', target: 'web', label: 'данные для отображения' },
-      { source: 'runner-integration1', target: 'integration', label: 'данные', color: 'red' },
-      { source: 'runner-integration2', target: 'otherServer', label: 'данныедля отчетов' },
-      { source: 'api', target: 'firebase', label: 'запросы', color: 'green' },
-      { source: 'firebase', target: 'client', label: 'данные в push-сообщениях', color: 'green' },
-      { source: 'service-group1', target: 'logger', label: 'логи syslog' },
-      { source: 'integration', target: 'api', label: 'уведомления', color: 'green' },
-      { source: 'integration', target: 'crm', label: 'данные' },
-      { source: 'man1', target: 'client', label: 'совершает звонки' },
-    ],
-  };
-  Diagram('scheme7', elements7);
-</script>
 
 
 <h3>Layout = grid, groups, positions = 'a1' (Sea battle syntax)</h3>

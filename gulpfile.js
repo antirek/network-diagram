@@ -8,7 +8,7 @@ const filesConcatArray = [
   'node_modules/numeric/numeric-1.2.6.min.js',
   'node_modules/layout-base/layout-base.js',
   'node_modules/cose-base/cose-base.js',
-  'node_modules/cytoscape-fcose/cytoscape-fcose.js',
+  'node_modules/cytoscape-grid-guide/cytoscape-grid-guide.js',
   'icons.js',
   'code.js',
 ];
