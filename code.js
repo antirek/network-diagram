@@ -51,8 +51,8 @@ const Diagram = function(id, elements, options) {
       const position = findPositionForNodeById(node.data.id);
       if (position) {
         node.position = {
-          row: position.row,
-          col: position.col,
+          row: Number(position.row),
+          col: Number(position.col),
         };
       }
       return node;
@@ -91,6 +91,8 @@ const Diagram = function(id, elements, options) {
       name: 'grid',
       rows: 5,
       cols: 5,
+      fit: true, // whether to fit the viewport to the graph
+      padding: 100, // padding used on fit
       position: function(node) {
         return {
           row: node.position('row'),
@@ -181,11 +183,16 @@ const Diagram = function(id, elements, options) {
       // console.log('elements', elements);
       const cy = cytoscape({
         container: document.getElementById(element),
+        zoom: 0.7,
+        pan: {
+          x: 100,
+          y: 100,
+        },
         boxSelectionEnabled: true,
         autounselectify: true,
         style: prepareStylesheet(),
         elements,
-        layout: layouts['grid'],
+        layout: layouts['grid'], // {name: 'preset', }// layouts['grid'],
       });
 
       cy.gridGuide({
@@ -195,6 +202,8 @@ const Diagram = function(id, elements, options) {
         snapToGridCenter: true,
         panGrid: true,
         drawGrid: false,
+        resize: false,
+        zoomDash: false,
         guidelinesStyle: {
           strokeStyle: 'black',
           horizontalDistColor: '#ff0000',
