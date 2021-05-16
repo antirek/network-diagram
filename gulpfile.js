@@ -31,3 +31,5 @@ gulp.task('concat', (done) => {
 
 gulp.task('default', gulp.series('icons', 'concat'));
 
+gulp.task('dist/code-full.min.js', gulp.series('icons', 'concat'));
+

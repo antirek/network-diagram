@@ -53,6 +53,34 @@
   Diagram('scheme2', elements2, {layout:'grid'});
 </script>
 
+
+<h3>Layout = preset</h3>
+<div id="scheme3" style="height:300px;width:800px;"></div>
+<script>      
+  const elements3 = {    
+    nodes: [
+      { id: 'client', type: 'smartphone', label: 'Mobile App'},
+      { id: 'server', type: 'server', label: 'Main Server'},
+      { id: 'db1', type: 'database', group: 'db cluster', label: 'DB 1'},
+      { id: 'db2', type: 'database', group: 'db cluster', label: 'DB 2'},
+    ],
+    edges: [
+      { source: 'client', target: 'server', label: 'request' },
+      { source: 'server', target: 'db1', label: 'request' },
+      { source: 'server', target: 'db2', label: 'request' },
+    ],
+    positions: [
+      { id: 'client', row: 1, col: 2, },
+      { id: 'server', row: 2, col: 4, },
+      { id: 'db1', row: 1, col: 5, },
+      { id: 'db2', row: 3, col: 5, },
+    ],
+  };
+  Diagram('scheme3', elements3, {layout:'preset'});
+</script>
+
+
+
 <h3>Layout = grid, groups</h3>
 <div id="scheme4" style="height:300px;width:800px;"></div>
 <script>

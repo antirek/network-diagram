@@ -86,6 +86,12 @@ const Diagram = function(id, elements, options) {
     addPositions(positions);
   };
 
+  const presetDefaultParams = function() {
+    return {
+      name: 'preset',
+    };
+  };
+
   const gridDefaultParams = function() {
     return {
       name: 'grid',
@@ -104,6 +110,7 @@ const Diagram = function(id, elements, options) {
 
   const layouts = {
     'grid': gridDefaultParams(),
+    'preset': presetDefaultParams(),
   };
 
   const prepareStylesheet = function() {

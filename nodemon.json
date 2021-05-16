@@ -1,0 +1,14 @@
+{
+    "verbose": true,
+    "ignore": [
+        "*.test.js",
+        "fixtures/*",
+        "node_modules"
+    ],
+    "watch": [
+        "code.js"
+    ],
+    "execMap": {
+        "js": "npm run build"
+    }
+}
